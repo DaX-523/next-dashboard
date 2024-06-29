@@ -1,0 +1,41 @@
+.container {
+  position: sticky;
+  flex: 1;
+  top: 20px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.username {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  margin-right: 2rem;
+}
+
+.userTitle,
+.userSubTitle {
+  margin: 0;
+  display: block;
+  padding: 0 1rem;
+}
+
+.menuList {
+  padding: 0.5rem 1rem;
+  margin: 1rem 2rem;
+  list-style: none;
+}
+
+.menuItem {
+  padding: 0.5rem 0;
+  color: var(--textSec);
+  font-weight: bold;
+  font-size: 20px;
+  margin: 10px 0px;
+}

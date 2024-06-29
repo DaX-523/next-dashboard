@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.menu {
+  flex: 1;
+  background-color: var(--bgSec);
+  padding: 20px;
+  min-height: 100vh;
+}
