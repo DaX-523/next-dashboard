@@ -1,7 +1,11 @@
-import React from "react";
+import Users from "@/ui/dashboard/users/Users";
 
-const Users = () => {
-  return <div>Users</div>;
+const Userspage = () => {
+  return (
+    <div>
+      <Users />
+    </div>
+  );
 };
 
-export default Users;
+export default Userspage;

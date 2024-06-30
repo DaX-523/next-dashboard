@@ -1,7 +1,11 @@
-import React from "react";
+import Products from "@/ui/dashboard/products/Products";
 
-const Products = () => {
-  return <div>Products</div>;
+const Productspage = () => {
+  return (
+    <div>
+      <Products />
+    </div>
+  );
 };
 
-export default Products;
+export default Productspage;

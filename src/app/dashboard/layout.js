@@ -15,7 +15,9 @@ const layout = ({ children }) => {
       </div>
       <div className={styles.nav}>
         <Navbar />
-        {children}
+        <div className={styles.wrapper}>
+          <div className={styles.main}>{children}</div>
+        </div>
       </div>
     </div>
   );

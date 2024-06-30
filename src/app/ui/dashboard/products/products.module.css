@@ -1,0 +1,62 @@
+.container {
+  padding: 20px;
+  width: 100%;
+  background: var(--bgSec);
+  border-radius: 10px;
+}
+
+.heading {
+  font-weight: 300;
+  text-transform: capitalize;
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.table {
+  width: 100%;
+}
+
+.table thead td {
+  font-size: 20px;
+  font-weight: 200;
+  text-transform: capitalize;
+  color: var(--textSec);
+  border-bottom: 2px solid var(--textSec);
+  padding: 8px;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.productImage {
+  object-cover: fit;
+  border-radius: 50%;
+}
+
+.table tbody td {
+  padding: 12px 0;
+  font-size: 14px;
+}
+
+.button {
+  border-radius: 5px;
+  padding: 10px;
+  color: var(--textSec);
+  cursor: pointer;
+}
+
+.view {
+  background-color: teal;
+}
+
+.delete {
+  background-color: crimson;
+}
+
+.add {
+  background-color: #585858;
+  border: none;
+}
