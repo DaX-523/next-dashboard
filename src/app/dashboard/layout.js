@@ -1,5 +1,6 @@
 import Sidebar from "@/ui/sidebar/Sidebar";
 import styles from "@/ui/dashboard/dashboard.module.css";
+import Navbar from "@/ui/navbar/Navbar";
 
 export const metadata = {
   title: "NextJS Dashboard",
@@ -11,6 +12,10 @@ const layout = ({ children }) => {
     <div className={styles.container}>
       <div className={styles.menu}>
         <Sidebar />
+      </div>
+      <div className={styles.nav}>
+        <Navbar />
+        {children}
       </div>
     </div>
   );

@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--bgSec);
+  border-radius: 10px;
+}
+
+.search {
+  display: flex;
+  padding: 10px;
+  align-item: center;
+  background-color: var(--bgThird);
+  border-radius: 10px;
+  gap: 6px;
+}
+
+.utilities {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input {
+  border: none;
+  background-color: inherit;
+  color: var(--textSec);
+  padding: 4px;
+}
+
+.icons {
+  display: flex;
+  gap: 8px;
+}

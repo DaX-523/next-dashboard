@@ -15,8 +15,7 @@
 .username {
   display: flex;
   flex-direction: column;
-  margin-left: 1rem;
-  margin-right: 2rem;
+  margin: 0 1rem;
 }
 
 .userTitle,
@@ -27,8 +26,8 @@
 }
 
 .menuList {
-  padding: 0.5rem 1rem;
-  margin: 1rem 2rem;
+  margin: 0;
+  padding: 2rem 0.5rem;
   list-style: none;
 }
 

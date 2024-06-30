@@ -1,8 +1,5 @@
 .container {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
 }
 
 .menu {
@@ -10,4 +7,9 @@
   background-color: var(--bgSec);
   padding: 20px;
   min-height: 100vh;
+}
+
+.nav {
+  flex: 4;
+  padding: 20px;
 }
