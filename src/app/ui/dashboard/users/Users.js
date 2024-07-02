@@ -1,11 +1,18 @@
 import Image from "next/image";
 import styles from "./users.module.css";
+import Link from "next/link";
+import { fetchUsers } from "@/lib/data";
+import { deleteUser } from "@/lib/actions";
 
-const Users = () => {
+const Users = async () => {
+  const users = await fetchUsers();
+
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Users</h2>
-      <button className={`${styles.button} ${styles.add}`}>Add new</button>
+      <Link href={"/dashboard/users/add"}>
+        <button className={`${styles.button} ${styles.add}`}>Add new</button>
+      </Link>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -18,87 +25,40 @@ const Users = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div className={styles.user}>
-                <Image
-                  src="/avatar.png"
-                  width={40}
-                  height={40}
-                  alt="user img"
-                  className={styles.userImage}
-                />
-                John Doe
-              </div>
-            </td>
-            <td>johndoe12@gmail.com</td>
-            <td>20/06/2023</td>
-            <td>Admin</td>
-            <td>online</td>
-            <td>
-              <button className={`${styles.button} ${styles.view}`}>
-                View
-              </button>
+          {users.map((user) => (
+            <tr key={user._id}>
+              <td>
+                <div className={styles.user}>
+                  <Image
+                    src="/avatar.png"
+                    width={40}
+                    height={40}
+                    alt="user img"
+                    className={styles.userImage}
+                  />
+                  {user.username}
+                </div>
+              </td>
+              <td>{user.email}</td>
+              <td>{user.createdAt?.toString().slice(4, 16)}</td>
+              <td>{user.isAdmin ? "Admin" : "Not Admin"}</td>
+              <td>{user.isActive ? "online" : "offline"}</td>
+              <td>
+                <Link href={"/dashboard/users/" + user._id}>
+                  <button className={`${styles.button} ${styles.view}`}>
+                    View
+                  </button>
+                </Link>
+                <form action={deleteUser}>
+                  <input type="hidden" name="id" value={user._id}></input>
 
-              <button className={`${styles.button} ${styles.delete}`}>
-                Delete
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className={styles.user}>
-                <Image
-                  src="/avatar.png"
-                  width={40}
-                  height={40}
-                  alt="user img"
-                  className={styles.userImage}
-                />
-                Alice Grant
-              </div>
-            </td>
-            <td>alicegrant34@gmail.com</td>
-            <td>23/09/2023</td>
-            <td>Not Admin</td>
-            <td>offline</td>
-            <td>
-              <button className={`${styles.button} ${styles.view}`}>
-                View
-              </button>
-
-              <button className={`${styles.button} ${styles.delete}`}>
-                Delete
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className={styles.user}>
-                <Image
-                  src="/avatar.png"
-                  width={40}
-                  height={40}
-                  alt="user img"
-                  className={styles.userImage}
-                />
-                Kent Mark
-              </div>
-            </td>
-            <td>markent56@gmail.com</td>
-            <td>23/12/2023</td>
-            <td>Admin</td>
-            <td>offline</td>
-            <td>
-              <button className={`${styles.button} ${styles.view}`}>
-                View
-              </button>
-
-              <button className={`${styles.button} ${styles.delete}`}>
-                Delete
-              </button>
-            </td>
-          </tr>
+                  <button className={`${styles.button} ${styles.delete}`}>
+                    Delete
+                  </button>
+                </form>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
