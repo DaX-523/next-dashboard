@@ -50,24 +50,81 @@ export const addProduct = async (formdata) => {
   redirect("/dashboard/products");
 };
 
-export const deleteUser = async (id) => {
+export const deleteUser = async (formdata) => {
   try {
+    const { id } = Object.fromEntries(formdata);
     connectToDB();
     await User.findByIdAndDelete(id);
   } catch (error) {
     console.log(error);
     throw new Error("Failed to delete user!", error);
   }
-  redirect("/dashooard/users");
+  redirect("/dashboard/users");
 };
 
-export const deleteProduct = async (id) => {
+export const deleteProduct = async (formdata) => {
   try {
+    const { id } = Object.fromEntries(formdata);
+
     connectToDB();
     await Product.findByIdAndDelete(id);
   } catch (error) {
     console.log(error);
     throw new Error("Failed to delete Product!", error);
   }
-  redirect("/dashooard/products");
+  redirect("/dashboard/products");
+};
+
+export const updateProduct = async (formdata) => {
+  try {
+    const { id, title, price, stock, color, size, description } =
+      Object.fromEntries(formdata);
+
+    connectToDB();
+    const fieldsToUpdate = {
+      title,
+      price,
+      stock,
+      color,
+      size,
+      description,
+    };
+    Object.keys(fieldsToUpdate).forEach(
+      (key) =>
+        (fieldsToUpdate[key] === "" || undefined || null) &&
+        delete fieldsToUpdate[key]
+    );
+    await Product.findByIdAndUpdate(id, fieldsToUpdate);
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to delete Product!", error);
+  }
+  redirect("/dashboard/products");
+};
+export const updateUser = async (formdata) => {
+  try {
+    const { id, username, email, password, phone, address, isAdmin, isActive } =
+      Object.fromEntries(formdata);
+
+    connectToDB();
+    const fieldsToUpdate = {
+      username,
+      email,
+      password,
+      phone,
+      address,
+      isAdmin,
+      isActive,
+    };
+    Object.keys(fieldsToUpdate).forEach(
+      (key) =>
+        (fieldsToUpdate[key] === "" || undefined || null) &&
+        delete fieldsToUpdate[key]
+    );
+    await User.findByIdAndUpdate(id, fieldsToUpdate);
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to delete User!", error);
+  }
+  redirect("/dashboard/users");
 };

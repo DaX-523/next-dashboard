@@ -1,10 +1,10 @@
 import User from "@/ui/dashboard/users/singleUser/User";
 import React from "react";
 
-const SingleUserPage = () => {
+const SingleUserPage = ({ params: { id } }) => {
   return (
     <div>
-      <User />
+      <User id={id} />
     </div>
   );
 };

@@ -1,7 +1,11 @@
 import Image from "next/image";
 import styles from "./product.module.css";
+import { fetchProduct } from "@/lib/data";
+import { updateProduct } from "@/lib/actions";
 
-const Product = () => {
+const Product = async ({ id }) => {
+  const product = await fetchProduct(id);
+  console.log(product);
   return (
     <div className={styles.container}>
       <div className={styles.info}>
@@ -14,16 +18,17 @@ const Product = () => {
             height={250}
           />
         </div>
-        John Doe
+        {product.title}
       </div>
       <div className={styles.formContainer}>
-        <form className={styles.form}>
-          <input type="text" name="title" placeholder="Title" required />
+        <form action={updateProduct} className={styles.form}>
+          <input type="hidden" name="id" value={product.id}></input>
+          <input type="text" name="title" placeholder={product.title} />
 
-          <input type="number" name="price" placeholder="Price" required />
-          <input type="number" name="stock" placeholder="Stock" required />
-          <input type="text" name="color" placeholder="Color" required />
-          <input type="text" name="size" placeholder="Size" required />
+          <input type="number" name="price" placeholder={product.price} />
+          <input type="number" name="stock" placeholder={product.stock} />
+          <input type="text" name="color" placeholder={product.color} />
+          <input type="text" name="size" placeholder={product.size} />
           <select>
             <option value="general">Choose a category?</option>
             <option value="kitchen">Kitchen</option>
@@ -33,7 +38,7 @@ const Product = () => {
           <textarea
             name="description"
             rows={12}
-            placeholder="Description"
+            placeholder={product.title}
           ></textarea>
           <button className={styles.button} type="submit">
             Update

@@ -26,7 +26,7 @@ const Users = async () => {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user._id}>
+            <tr key={user.id}>
               <td>
                 <div className={styles.user}>
                   <Image
@@ -44,13 +44,13 @@ const Users = async () => {
               <td>{user.isAdmin ? "Admin" : "Not Admin"}</td>
               <td>{user.isActive ? "online" : "offline"}</td>
               <td>
-                <Link href={"/dashboard/users/" + user._id}>
+                <Link href={"/dashboard/users/" + user.id}>
                   <button className={`${styles.button} ${styles.view}`}>
                     View
                   </button>
                 </Link>
                 <form action={deleteUser}>
-                  <input type="hidden" name="id" value={user._id}></input>
+                  <input type="hidden" name="id" value={user.id}></input>
 
                   <button className={`${styles.button} ${styles.delete}`}>
                     Delete

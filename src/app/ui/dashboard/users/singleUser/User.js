@@ -1,7 +1,10 @@
 import Image from "next/image";
 import styles from "./user.module.css";
+import { fetchUser } from "@/lib/data";
+import { updateUser } from "@/lib/actions";
 
-const User = () => {
+const User = async ({ id }) => {
+  const user = await fetchUser(id);
   return (
     <div className={styles.container}>
       <div className={styles.info}>
@@ -14,30 +17,38 @@ const User = () => {
             height={250}
           />
         </div>
-        John Doe
+        {user.username}
       </div>
       <div className={styles.formContainer}>
-        <form className={styles.form}>
-          <input type="text" name="name" placeholder="Name" required />
-          <input type="text" name="email" placeholder="Email" required />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-          />
-          <input type="number" name="phone" placeholder="Phone" required />
-          <select>
-            <option value={false}>isAdmin?</option>
-            <option value={true}>Yes</option>
-            <option value={false}>No</option>
+        <form action={updateUser} className={styles.form}>
+          <input type="hidden" name="id" value={user.id}></input>
+          <input type="text" name="name" placeholder={user.username} />
+          <input type="text" name="email" placeholder={user.email} />
+          <input type="password" name="password" placeholder="Password" />
+          <input type="number" name="phone" placeholder={user.phone} />
+          <label>isAdmin</label>
+          <select name="isAdmin" id="isAdmin">
+            <option value={true} selected={user.isAdmin}>
+              Yes
+            </option>
+            <option value={false} selected={!user.isAdmin}>
+              No
+            </option>
           </select>
-          <select>
-            <option value={false}>isActive?</option>
-            <option value={true}>Yes</option>
-            <option value={false}>No</option>
+          <label>isActive</label>
+          <select name="isActive" id="isActive">
+            <option value={true} selected={user.isActive}>
+              Yes
+            </option>
+            <option value={false} selected={!user.isActive}>
+              No
+            </option>
           </select>
-          <textarea name="address" rows={12} placeholder="Address"></textarea>
+          <textarea
+            name="address"
+            rows={12}
+            placeholder={user.address}
+          ></textarea>
           <button className={styles.button} type="submit">
             Update
           </button>

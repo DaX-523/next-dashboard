@@ -25,7 +25,7 @@ const Products = async () => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr key={product._id}>
+            <tr key={product.id}>
               <td>
                 <div className={styles.product}>
                   <Image
@@ -43,13 +43,13 @@ const Products = async () => {
               <td>{product.createdAt?.toString().slice(4, 16)}</td>
               <td>{product.stock}</td>
               <td>
-                <Link href={"/dashboard/products/" + product._id}>
+                <Link href={"/dashboard/products/" + product.id}>
                   <button className={`${styles.button} ${styles.view}`}>
                     View
                   </button>
                 </Link>
                 <form action={deleteProduct}>
-                  <input type="hidden" name="id" value={product._id}></input>
+                  <input type="hidden" name="id" value={product.id}></input>
                   <button className={`${styles.button} ${styles.delete}`}>
                     Delete
                   </button>
