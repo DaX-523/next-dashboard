@@ -1,9 +1,10 @@
+import { authenticate } from "@/lib/actions";
 import styles from "@/ui/login/login.module.css";
 
 const Loginpage = () => {
   return (
     <div className={styles.container}>
-      <form className={styles.form}>
+      <form action={authenticate} className={styles.form}>
         <h2 className={styles.heading}>Login</h2>
         <label htmlFor="username">Username</label>
         <input

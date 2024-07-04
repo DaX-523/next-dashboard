@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { connectToDB } from "./db";
 import { User, Product } from "./models";
 import bcrypt from "bcrypt";
+import { signIn } from "auth";
 
 export const addUser = async (formdata) => {
   try {
@@ -127,4 +128,17 @@ export const updateUser = async (formdata) => {
     throw new Error("Failed to delete User!", error);
   }
   redirect("/dashboard/users");
+};
+
+export const authenticate = async (formData) => {
+  const { username, password } = Object.fromEntries(formData);
+
+  try {
+    await signIn("credentials", { username, password });
+  } catch (err) {
+    if (err.message.includes("CredentialsSignin")) {
+      return "Wrong Credentials";
+    }
+    throw err;
+  }
 };

@@ -3,7 +3,8 @@
     "baseUrl": "src",
     "paths": {
       "@/ui/*": ["app/ui/*"],
-      "@/lib/*": ["app/lib/*"]
+      "@/lib/*": ["app/lib/*"],
+      "@/*": ["../*"]
     }
   }
 }
